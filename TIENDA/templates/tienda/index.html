@@ -1,0 +1,23 @@
+{% extends 'tienda/layout.html' %}
+
+{% load static %}
+{% block body %}
+
+
+    <div class="row">
+        {% for producto in productos  %}
+            <div class="card" style="width: 18rem;">
+                <img src=" {{ media_url  }}{{ producto.imagen.url }}" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title">{{producto.titulo}}</h5>
+                    <p class="card-text">{{producto.descripcion}}</p>
+                    <a href="{% url 'tienda:producto' producto.id %}  " class="btn btn-primary">ver más</a>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+       
+
+{% endblock body %}
+
