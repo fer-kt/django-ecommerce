@@ -1,7 +1,30 @@
+{% extends 'tienda/layout.html' %}
 {% block body %}
-{{ ctx.titulo }}
-{{ ctx.descripcion }}
-{{ ctx.precio }}
-{{ ctx.categoria }}
+<div class="container">
+
+    <h3>
+        {{ ctx.titulo }}
+        <small class="text-muted"> - {{ ctx.categoria }}</small>
+    </h3>
+    
+    <p>
+        
+        {{ ctx.descripcion }}
+    </p>
+    <p>
+        
+       $ {{ ctx.precio }}
+    </p>
+    
+    
+    
+    <img src="{{ media_url  }} {{ ctx.imagen.url }} " alt=""  class="  img-thumbnail"  >
+    <br>
+    
+</div>
+<a href=" {% url 'tienda:editar' ctx.id %}  " class="btn btn-info">Editar producto</a>
+<a href=" {%url 'tienda:eliminar' ctx.id %} " class="btn btn-danger">Eliminar producto</a>
+
+
 {% endblock body %}
 
