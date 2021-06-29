@@ -18,52 +18,81 @@
 
 <body>
 
-    
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'tienda:home' %}">JAGUARETE KAA S.A</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="{% url 'tienda:home' %} ">Home</a>
-                </li>
-                <li class="nav-item">
+
+    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #eedd80;">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{% url 'tienda:home' %}">JAGUARETE KAA S.A</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'tienda:home' %} ">Home</a>
+                    </li>
+                    {% if perms.TIENDA.add_producto%}
+                    <li class="nav-item">
+
+                        <a class="nav-link" href="{% url 'tienda:agregar' %}">Agregar productos</a>
+                    </li>
+                    {% endif %}
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                            data-bs-toggle="dropdown" aria-expanded="false">
+                            Categorias
+                        </a>
+
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+                            {% for cat in categoria %}
+                            <li><a class="dropdown-item" href="{% url 'tienda:categorias' cat.id %} ">{{cat}}</a></li>
+                            {% endfor %}
+
+                        </ul>
+
+
+
+                    </li>
                     
-                    <a class="nav-link" href="{% url 'tienda:agregar' %}">Agregar productos</a>
-                </li>
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Categorias
-                    </a>
+                </ul>
+              
+                <div class="dropdown">
+                    {% if user.is_authenticated %}
+                    Bienvenido! 
+                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{user.username}}
+                    </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                          <li><a class="dropdown-item" href="{% url 'logout' %} ">Salir</a></li>
+                          
+                        </ul>
+                        {% else %}
+                        <div class="d-grid gap-2 d-md-block">
+                            <button class="btn btn-outline-success" type="button"><a href=" {% url 'login' %} ">Ingresar</a></button>
+                            <button class="btn btn-outline-info" type="button"><a href=" {% url 'USUARIOS:registrarse' %} ">Registrar</a></button>
+                          </div>
+                        
+                        
+                        {% endif%}
+                  </div>
 
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-                        {% for cat in categoria %}
-                        <li><a class="dropdown-item" href="{% url 'tienda:categorias' cat.id %} ">{{cat}}</a></li>
-                        {% endfor %}
-
-                    </ul>
-
-
-
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
-            </ul>
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
+                  
+                  <form action="{% url 'tienda:buscar' %}" method="get">
+                      
+                      <input name="buscar" type="text" placeholder="buscar...">
+                      <button type="submit" class="btn btn-outline-info">Buscar</button>
+                    </form>
+                    
+                    
+                        
+                        <button type="button" class="btn btn-success">Carrito</button>
+                        
+                      
+            </div>
         </div>
-    </div>
-</nav>
+    </nav>
 
 
 
@@ -74,6 +103,13 @@
         {% block body %}
 
         {% endblock body %}
+    </div>
+
+    <div class="container">
+
+        {% block content %}
+
+        {% endblock content %}
     </div>
 
 

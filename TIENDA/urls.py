@@ -9,5 +9,6 @@ urlpatterns = [
     path('agregar/', views.agregar, name = 'agregar'),
     path('categoria/<int:id>', views.categoria, name = 'categorias'),
     path('editar/<int:id_producto>', views.editar, name = 'editar'),
-    path('eliminar/<articulo_id>', views.eliminar, name = 'eliminar')
+    path('eliminar/<articulo_id>', views.eliminar, name = 'eliminar'),
+    path('buscar/', views.buscar, name = 'buscar')
 ]

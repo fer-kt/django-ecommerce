@@ -1,9 +1,13 @@
+import django
+from django.contrib.auth.models import Permission
+from django.db.models.query_utils import Q
 import TIENDA
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import Producto, Categoria
 from .forms import FormProducto, Producto
 from django.urls import reverse
+from django.contrib.auth.decorators import permission_required, login_required
 
 
 def home(request):
@@ -26,7 +30,7 @@ def producto(request, id_producto):
 
     })
 
-
+@permission_required('TIENDA.add_producto')
 def agregar(request):
     categoria = Categoria.objects.all()
     data = {"form": FormProducto(), 'categoria': categoria}
@@ -49,7 +53,7 @@ def categoria(request, id):
         'categoria': categoria
     })
 
-
+@permission_required('TIENDA.producto_change')
 def editar(request, id_producto):
     producto = get_object_or_404(Producto, id = id_producto)
     if request.method == 'POST':
@@ -63,8 +67,20 @@ def editar(request, id_producto):
             'producto': producto,
             'form': form
         })
-
+@permission_required('TIENDA.delete_producto')
 def eliminar(request, articulo_id):
     producto = get_object_or_404(Producto, id=articulo_id)
     producto.delete()
     return redirect("tienda:home")
+
+
+def buscar(request):
+    buscar = request.GET['buscar']
+    producto = Producto.objects.filter(
+        Q(descripcion__contains = buscar) | Q(titulo__contains=buscar) )
+    
+    return render(request, 'tienda/buscar.html', {
+        'categoria':Categoria.objects.all(),
+        'producto': producto,
+        
+    })

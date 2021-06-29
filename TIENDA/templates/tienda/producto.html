@@ -18,13 +18,14 @@
     
     
     
-    <img src="{{ media_url  }} {{ ctx.imagen.url }} " alt=""  class="  img-thumbnail"  >
+    <img src="{{ media_url  }} {{ ctx.imagen.url }} " alt=""  class="img-fluid img-thumbnail "   >
     <br>
     
 </div>
+{% if perms.TIENDA.add_producto%}
 <a href=" {% url 'tienda:editar' ctx.id %}  " class="btn btn-info">Editar producto</a>
 <a href=" {%url 'tienda:eliminar' ctx.id %} " class="btn btn-danger">Eliminar producto</a>
-
+{% endif %}
 
 {% endblock body %}
 

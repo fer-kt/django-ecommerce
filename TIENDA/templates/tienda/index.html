@@ -8,10 +8,9 @@
 
 
 
-
 <h2>últimos </h2>
 
-<div class="row">
+<div class="row justify-content-md-around">
         {% for producto in nuevos  %}
             <div class="card text-end" style="width: 18rem;">
                 <img src=" {{ media_url  }}{{ producto.imagen.url }}" class="card-img-top" alt="...">
@@ -26,13 +25,13 @@
     </div>
 
 <hr>
-<hr>
+
 
 
      <div class="row">
         {% for producto in productos  %}
             <div class="card text-end" style="width: 18rem;">
-                <img src=" {{ media_url  }}{{ producto.imagen.url }}" class="card-img-top img-thumbnail" alt="...">
+                <img src=" {{ media_url  }}{{ producto.imagen.url }}" class="card-img-top img-thumbnail" alt= {{producto.titulo}}>
                 <div class="card-body">
                     <h5 class="card-title">{{producto.titulo}}</h5>
                     <p class="card-text">{{producto.descripcion}}</p>
