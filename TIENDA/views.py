@@ -13,27 +13,27 @@ from django.contrib.auth.decorators import permission_required, login_required
 def home(request):
     nuevos = Producto.objects.all().order_by('-fecha')[:3]
     productos = Producto.objects.all().order_by('-fecha')[3:10]
-    categoria = Categoria.objects.all()
+    
     return render(request, 'tienda/index.html', {
         'productos': productos,
         'nuevos': nuevos,
-        'categoria': categoria,
+       
     })
 
 
 def producto(request, id_producto):
-    categoria = Categoria.objects.all()
-    ctx = get_object_or_404(Producto, id=id_producto)
+    
+    
     return render(request, 'tienda/producto.html', {
-        'ctx': ctx,
-        'categoria': categoria,
+        'ctx': get_object_or_404(Producto, id=id_producto),
+        
 
     })
 
 @permission_required('TIENDA.add_producto')
 def agregar(request):
-    categoria = Categoria.objects.all()
-    data = {"form": FormProducto(), 'categoria': categoria}
+    
+    data = {"form": FormProducto() }
     if request.method == "POST":
         form = FormProducto(data=request.POST, files=request.FILES)
         if form.is_valid():
@@ -45,13 +45,13 @@ def agregar(request):
 
 
 def categoria(request, id):
-    categoria = Categoria.objects.all()
-    cat = Producto.objects.filter(categoria=id)
     print(id)
     return render(request, 'tienda/categorias.html', {
-        'cat': cat,
-        'categoria': categoria
+        'cat': Producto.objects.filter(categoria=id)
+        
     })
+    
+   
 
 @permission_required('TIENDA.producto_change')
 def editar(request, id_producto):
@@ -80,7 +80,7 @@ def buscar(request):
         Q(descripcion__contains = buscar) | Q(titulo__contains=buscar) )
     
     return render(request, 'tienda/buscar.html', {
-        'categoria':Categoria.objects.all(),
+        
         'producto': producto,
         
     })

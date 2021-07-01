@@ -65,7 +65,7 @@
                         {{user.username}}
                     </button>
                         <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item" href="{% url 'logout' %} ">Salir</a></li>
+                          <li><a class="dropdown-item btn btn-warning" href="{% url 'logout' %} ">Salir</a></li>
                           
                         </ul>
                         {% else %}
@@ -78,14 +78,14 @@
                         {% endif%}
                   </div>
 
-                  
+                  &NonBreakingSpace;
                   <form action="{% url 'tienda:buscar' %}" method="get">
                       
                       <input name="buscar" type="text" placeholder="buscar...">
                       <button type="submit" class="btn btn-outline-info">Buscar</button>
                     </form>
                     
-                    
+                        &NonBreakingSpace;
                         
                         <button type="button" class="btn btn-success">Carrito</button>
                         
