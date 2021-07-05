@@ -7,8 +7,9 @@ from .models import Producto, Categoria, Carrito
 from .forms import FormProducto, Producto
 from django.urls import reverse
 from django.contrib.auth.decorators import permission_required, login_required
+#import pywhatkit
 
-
+#PHONE = '+541159528537' # número de telefono donde recibir el pedido 
 def home(request):
     if "carrito" not in request.session:
             request.session["carrito"] = []
@@ -116,12 +117,15 @@ def borrar_carrito(request):
 
 @login_required
 def confirmar_pedido(request):
-    usuario = User.objects.get(username=request.user)
-    
+    usuario = User.objects.get(username=request.user)    
     cart = Carrito.objects.create(usuario = usuario)
     cart.save()
-    for id in request.session['carrito']:
+    for id in request.session['carrito']:        
         cart.lista.add(Producto.objects.get(id=id))
     request.session['carrito'] = []
+    
     return redirect("tienda:home") 
         
+        
+def acerca(request):
+    return render(request, 'tienda/acerca.html')

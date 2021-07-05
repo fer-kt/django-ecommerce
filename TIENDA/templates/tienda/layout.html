@@ -19,7 +19,7 @@
 <body>
 
 
-    <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #eedd80;">
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top" style="background-color: #eedd80;">
         <div class="container-fluid">
             <a class="navbar-brand" href="{% url 'tienda:home' %}">JAGUARETE KAA S.A</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
@@ -32,6 +32,8 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'tienda:home' %} ">Home</a>
                     </li>
+                    <a href="{% url 'tienda:acerca' %} " class="nav-link active">Acerca de</a>
+<a href="mailto: contacto@jaguaretesa.com" class="nav-link active">Contacto</a>
                     {% if perms.TIENDA.add_producto%}
                     <li class="nav-item">
 
@@ -52,10 +54,7 @@
 
                         </ul>
 
-
-
                     </li>
-
                 </ul>
 
                 <div class="dropdown">
@@ -66,7 +65,7 @@
                         {{user.username}}
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a class="dropdown-item btn btn-warning" href="{% url 'logout' %} ">Salir  </a></li>
+                        <li><a class="dropdown-item btn btn-warning" href="{% url 'logout' %} ">Salir </a></li>
 
                     </ul>
                     {% else %}
@@ -88,17 +87,24 @@
                     <button type="submit" class="btn btn-outline-info">Buscar</button>
                 </form>
                 &NonBreakingSpace;
-                <div class="circulo" style="border-radius: 25%; background-color:rgb(236, 240, 24); max-width: 55px">  {{cantidad_productos}}  
-                    <img src="https://image.flaticon.com/icons/png/512/419/419910.png" style="max-width: 75%;" alt="" srcset="">
-                     </div>
-               <a href=" {% url 'tienda:checkout' %} " class="btn btn-warning">Carrito </a>
+                <img src="https://image.flaticon.com/icons/png/512/419/419910.png" style="max-width: 25px;" alt=""
+                    srcset="">
+                <div class="" style="border-radius: 25%;  max-width: 55px; min-width: 25px ">
+                    <p class="font-weight-bold text-center"
+                        style="background-color: rgb(253, 0, 84); border-radius:50%; margin-top:2px ">
 
-            &NonBreakingSpace;
+                        {{cantidad_productos}}
+                    </p>
+
+                </div>
+                <a href=" {% url 'tienda:checkout' %} " class="btn btn-warning">Carrito </a>
+
+                &NonBreakingSpace;
 
 
 
 
-        </div>
+            </div>
         </div>
     </nav>
 
@@ -120,6 +126,23 @@
         {% endblock content %}
     </div>
 
+    <footer class="footer mt-auto py-3 bg-dark">
+
+
+        <div class="container">
+          
+          <div class="footer-copyright text-center py-2 text-primary">
+            
+                   © 2021 Jaguarete KAA S.A 
+
+              
+    <a href="mailto: fernandoecate@gmail.com">Desarrolador:  Fernando Emanuel Caté</a>
+  </div>
+        </div>
+    </footer>
+
+    
+      
 
 </body>
 
