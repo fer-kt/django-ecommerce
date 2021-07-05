@@ -26,8 +26,12 @@ class Producto(models.Model):
 class Carrito(models.Model):
     usuario = models.ForeignKey(User, on_delete=models.CASCADE, related_name='usuario')
     lista = models.ManyToManyField(Producto)
-    #total 
+    
+    def guardar(self):
+        self.save()
     
     def __str__(self) -> str:
-        return f'{self.usuario}, {self.lista} '
+        return f'{self.usuario} '
+    
+    
     

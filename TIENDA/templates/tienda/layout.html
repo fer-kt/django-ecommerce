@@ -55,42 +55,50 @@
 
 
                     </li>
-                    
+
                 </ul>
-              
+
                 <div class="dropdown">
                     {% if user.is_authenticated %}
-                    Bienvenido! 
-                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Bienvenido!
+                    <button class="btn btn-warning dropdown-toggle" type="button" id="dropdownMenuButton1"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         {{user.username}}
                     </button>
-                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                          <li><a class="dropdown-item btn btn-warning" href="{% url 'logout' %} ">Salir</a></li>
-                          
-                        </ul>
-                        {% else %}
-                        <div class="d-grid gap-2 d-md-block">
-                            <button class="btn btn-outline-success" type="button"><a href=" {% url 'login' %} ">Ingresar</a></button>
-                            <button class="btn btn-outline-info" type="button"><a href=" {% url 'USUARIOS:registrarse' %} ">Registrar</a></button>
-                          </div>
-                        
-                        
-                        {% endif%}
-                  </div>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><a class="dropdown-item btn btn-warning" href="{% url 'logout' %} ">Salir  </a></li>
 
-                  &NonBreakingSpace;
-                  <form action="{% url 'tienda:buscar' %}" method="get">
-                      
-                      <input name="buscar" type="text" placeholder="buscar...">
-                      <button type="submit" class="btn btn-outline-info">Buscar</button>
-                    </form>
-                    
-                        &NonBreakingSpace;
-                        
-                        <button type="button" class="btn btn-success">Carrito</button>
-                        
-                      
-            </div>
+                    </ul>
+                    {% else %}
+                    <div class="d-grid gap-2 d-md-block">
+                        <button class="btn btn-outline-success" type="button"><a
+                                href=" {% url 'login' %} ">Ingresar</a></button>
+                        <button class="btn btn-outline-info" type="button"><a
+                                href=" {% url 'USUARIOS:registrarse' %} ">Registrar</a></button>
+                    </div>
+
+
+                    {% endif%}
+                </div>
+
+                &NonBreakingSpace;
+                <form action="{% url 'tienda:buscar' %}" method="get">
+
+                    <input name="buscar" type="text" placeholder="buscar...">
+                    <button type="submit" class="btn btn-outline-info">Buscar</button>
+                </form>
+                &NonBreakingSpace;
+                <div class="circulo" style="border-radius: 25%; background-color:rgb(236, 240, 24); max-width: 55px">  {{cantidad_productos}}  
+                    <img src="https://image.flaticon.com/icons/png/512/419/419910.png" style="max-width: 75%;" alt="" srcset="">
+                     </div>
+               <a href=" {% url 'tienda:checkout' %} " class="btn btn-warning">Carrito </a>
+
+            &NonBreakingSpace;
+
+
+
+
+        </div>
         </div>
     </nav>
 

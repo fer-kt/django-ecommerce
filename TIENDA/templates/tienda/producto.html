@@ -6,7 +6,10 @@
         {{ ctx.titulo }}
         <small class="text-muted"> - {{ ctx.categoria }}</small>
     </h3>
-    
+    <button class=" btn btn-success" style="color: white;">
+        <a href="{% url 'tienda:carrito' ctx.id %}">Añadir al carrito</a>
+
+    </button>
     <p>
         
         {{ ctx.descripcion }}
