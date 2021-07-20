@@ -48,15 +48,13 @@ def agregar(request):
     return render(request, "tienda/agregar.html", data)
 
 
-def categoria(request, id):
-    print(id)
+def categoria(request, id):    
     return render(request, 'tienda/categorias.html', {
         'cat': Producto.objects.filter(categoria=id)
-
     })
 
 
-@permission_required('TIENDA.producto_change')
+@permission_required('TIENDA.change_producto')
 def editar(request, id_producto):
     producto = get_object_or_404(Producto, id=id_producto)
     if request.method == 'POST':
@@ -83,7 +81,7 @@ def eliminar(request, articulo_id):
 def buscar(request):
     buscar = request.GET['buscar']
     producto = Producto.objects.filter(
-        Q(descripcion__contains=buscar) | Q(titulo__contains=buscar))
+        Q(descripcion__icontains=buscar) | Q(titulo__icontains=buscar))
 
     return render(request, 'tienda/buscar.html', {
 

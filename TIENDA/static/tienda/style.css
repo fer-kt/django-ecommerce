@@ -1,0 +1,24 @@
+.carta-producto{
+    width: 100%;
+    height: 100%;
+}
+
+.btn-ver-mas{
+    position: absolute;
+    top: 90%;
+    right: 15px;
+}
+.precio{
+    margin-bottom: 25px;
+}
+
+.carta-categoria{
+    width: 18rem;
+    
+}
+
+.btn-cart{
+    position: absolute;
+    right: 10px;
+    bottom: 1px;
+}

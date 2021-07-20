@@ -7,13 +7,14 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>JAGUARETE KAA S.A</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
-    <!-- <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
-    <script src='main.js'></script> -->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
-        crossorigin="anonymous"></script>
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+    crossorigin="anonymous"></script>
+    
+    <link rel="stylesheet" type="text/css" href="{% static 'tienda/style.css' %}">
 </head>
 
 <body>
@@ -32,7 +33,7 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="{% url 'tienda:home' %} ">Home</a>
                     </li>
-                    <a href="{% url 'tienda:acerca' %} " class="nav-link active">Acerca de</a>
+                    <a href="{% url 'tienda:acerca' %} " class="nav-link active"> Acerca de</a>
 <a href="mailto: contacto@jaguaretesa.com" class="nav-link active">Contacto</a>
                     {% if perms.TIENDA.add_producto%}
                     <li class="nav-item">
@@ -87,7 +88,10 @@
                 </form>
                 &NonBreakingSpace;
                 
-                <img src="https://image.flaticon.com/icons/png/512/419/419910.png" style="max-width: 25px;" alt=""
+               
+                <!--si el usuario NO puede agregar productos (no es admin) puede ver el boton de carrito -->
+                    {% if not perms.TIENDA.add_producto %}
+                    <img src="https://image.flaticon.com/icons/png/512/419/419910.png" style="max-width: 25px;" alt=""
                     srcset="">
                 <div class="" style="border-radius: 25%;  max-width: 55px; min-width: 25px ">
                     <p class="font-weight-bold text-center"
@@ -98,7 +102,7 @@
 
                 </div>
                 <a href=" {% url 'tienda:checkout' %} " class="btn btn-warning">Carrito </a>
-
+                {% endif %}
                 &NonBreakingSpace;
 
 

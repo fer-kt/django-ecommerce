@@ -6,14 +6,14 @@
     
     
     {% for c in  cat  %}
-    <div class="card text-end" style="width: 18rem;">
+    <div class="card text-end carta-categoria" >
                     <img src=" {{ media_url  }}{{ c.imagen.url }}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{c.titulo}}</h5>
                         <p class="card-text">{{c.descripcion |slice:'0:200' }} <a href="{% url 'tienda:producto' c.id %}  " >...ver más</a></p>
     
                         
-                        <a href="{% url 'tienda:carrito' c.id %}" class="btn btn-success">Añadir al carrito</a> 
+                        <a href="{% url 'tienda:carrito' c.id %}" class="btn btn-success btn-cart">Añadir al carrito</a> 
                     </div>
                 </div>
     

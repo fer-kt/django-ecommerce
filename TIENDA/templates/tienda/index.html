@@ -14,15 +14,15 @@
     
         <div class="row justify-content-md-around">
             {% for producto in nuevos  %}
-                <div class="col-sm">
-                    <div class="card text-end" style="width: 18rem;">
-                        <div class="card-body">
+                <div class="col-md-3" >
+                    <div class="card text-end carta-producto " >
+                        <div class="card-body ">
                             <img src=" {{ media_url  }}{{ producto.imagen.url }}" class="card-img-top" alt="...">
                             <h5 class="card-title">{{producto.titulo}}</h5>
                             <p class="card-text">{{producto.descripcion |  slice:'0:50'}}...</p>
-                            <p class="card-text"> ${{producto.precio}} </p>
+                            <p class="card-text precio"> ${{producto.precio}} </p>
                             
-                            <a href="{% url 'tienda:producto' producto.id %}  " class="btn btn-primary">ver más</a>
+                            <a href="{% url 'tienda:producto' producto.id %}  " class="btn btn-primary btn-ver-mas">ver más</a>
                             
                         </div>
                     </div>
@@ -37,14 +37,16 @@
 <div class="container">
 <h2 class="text-center">Más productos</h2>
 <hr>
+
+
 <table class="table table-hover table-responsive-md">
     {% for producto in productos  %}
         <tr>
-            <th scope="col " class="col-sm-1"> <img src=" {{ media_url  }}{{ producto.imagen.url }}" style="max-width: 100%;" alt= {{producto.titulo}}>  </th>
-            <th scope="col"> {{producto.titulo}} </th>
-            <th scope="col">{{producto.descripcion |slice:"0:50"}}... </th>
-            <th scope="col">${{producto.precio}} </th>
-            <th scope="col"><a href="{% url 'tienda:producto' producto.id %}  " class="btn btn-primary">ver más</a> </th>
+            <td scope="col " class="col-sm-1"> <img src=" {{ media_url  }}{{ producto.imagen.url }}" class= "img-fluid" style="max-width: 55%;" alt= {{producto.titulo}}>  </td>
+            <td scope="col"> {{producto.titulo}} </td>
+            <td scope="col">{{producto.descripcion |slice:"0:50"}}... </td>
+            <td scope="col">${{producto.precio}} </td>
+            <td scope="col"><a href="{% url 'tienda:producto' producto.id %}  " class="btn btn-primary">ver más</a> </td>
             
         </tr>
       {% endfor %}
