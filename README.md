@@ -1,7 +1,7 @@
 # Django- Python ecommerce
 Ecommerce básico en Python con Django y bootstrap. Permite registro de usuarios. Alta, modificación y eliminación de productos sólo a los administradores.
 Base de datos SQLite.
-Trabajo práctico integrador para el curso de Full stack con Python y JavaScript del PoloTIC Misiones.
+Version desplegada disponible <a href="http://ferkt.pythonanywhere.com/" target="_blank" rel="noopener noreferrer" > Acá </a>
 <br>
 
 <a href="https://ibb.co/TcgFZrP" target="_blank" rel="noopener noreferrer" ><img src="https://i.ibb.co/TcgFZrP/Captura-de-pantalla-20210705203036-411x767.png" alt="Captura-de-pantalla-20210705203036-411x767" border="0"></a>
